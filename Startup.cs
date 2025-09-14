@@ -1,4 +1,6 @@
-﻿namespace OnlineStore.CustomerService
+﻿using OnlineStore.CustomerService.Infrastructure;
+
+namespace OnlineStore.CustomerService
 {
     public sealed class Startup
     {
@@ -11,7 +13,8 @@
 
         public void ConfigureServices(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddGrpc();
+            serviceCollection.AddGrpc(option=>option.Interceptors.Add<LoggerInterceptor>());
+            serviceCollection.AddGrpcReflection();
             serviceCollection.AddControllers();
             serviceCollection.AddEndpointsApiExplorer();
         }
@@ -24,6 +27,8 @@
             applicationBuilder.UseEndpoints(endpointRouteBuilder =>
             {
                 endpointRouteBuilder.MapGrpcService<GrpcServices.CustomerService>();
+                endpointRouteBuilder.MapGrpcReflectionService();
+                endpointRouteBuilder.MapGet("", () => "Hello World");
             });
         }
     }
