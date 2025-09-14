@@ -1,34 +1,42 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using System.Net;
 
-namespace OnlineStore
+namespace OnlineStore.CustomerService
 {
-    public class Program
+    public sealed class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            await Host
+                .CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(builder => builder.UseStartup<Startup>()
+                                                            .ConfigureKestrel(option =>
+                                                            {
+                                                                option.ListenPortByOptions(ProgramExtension.ONLINESTORE_GRPC_PORT, HttpProtocols.Http2);
+                                                                option.ListenPortByOptions(ProgramExtension.ONLINESTORE_HTTP_PORT, HttpProtocols.Http1);
+                                                            }))
 
-            // Add services to the container.
+                .Build()
+                .RunAsync();
 
-            builder.Services.AddControllers();
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-            builder.Services.AddOpenApi();
+        }
+    }
+    public static class ProgramExtension
+    {
+        public const string ONLINESTORE_GRPC_PORT = "ONLINESTORE_GRPC_PORT";
+        public const string ONLINESTORE_HTTP_PORT = "ONLINESTORE_HTTP_PORT";
 
-            var app = builder.Build();
+        public static void ListenPortByOptions(
+            this KestrelServerOptions option,
+            string envOption,
+            HttpProtocols httpProtocols)
+        {
+            var isHttpParsed = int.TryParse(Environment.GetEnvironmentVariable(envOption), out var httpPort);
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            if (isHttpParsed)
             {
-                app.MapOpenApi();
+                option.Listen(IPAddress.Any, httpPort, option => option.Protocols = httpProtocols);
             }
-
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-
-            app.Run();
         }
     }
 }
