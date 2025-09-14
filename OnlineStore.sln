@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.CustomerService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.ServiceDiscovery", "..\OnlineStore.ServiceDiscovery\OnlineStore.ServiceDiscovery.csproj", "{E5BDD09C-785B-4FE5-A431-0F9C4673E8D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDClient", "..\SDClient\SDClient.csproj", "{37A71869-6623-4C16-9238-7F082F0BA39A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E5BDD09C-785B-4FE5-A431-0F9C4673E8D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5BDD09C-785B-4FE5-A431-0F9C4673E8D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5BDD09C-785B-4FE5-A431-0F9C4673E8D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37A71869-6623-4C16-9238-7F082F0BA39A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37A71869-6623-4C16-9238-7F082F0BA39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37A71869-6623-4C16-9238-7F082F0BA39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37A71869-6623-4C16-9238-7F082F0BA39A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
