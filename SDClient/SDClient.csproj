@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<Protobuf Include="..\\ServiceDiscovery\\Protos\\sd.proto" Link="Protos\\sd.proto" GrpcServices="Client" />
+	</ItemGroup>
+</Project>

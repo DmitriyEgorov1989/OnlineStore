@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+option csharp_namespace = "OnlineStore";
+
+service OrderService{
+    rpc CancelOrderById(CancelOrderByIdRequest) returns(CancelOrderByIdResponse);
+    rpc GetOrderStatusById(GetOrderStatusByIdRequest) returns(GetOrderStatusByIdResponse);
+    rpc GetAllClients(GetAllClientsRequest) returns(GetAllClientsResponse);
+    rpc GetAllRegions(GetAllRegionsRequest) returns(GetAllRegionsResponse);
+    rpc GetAllOrders(GetAllOrdersRequest) returns(GetAllOrdersResponse);
+    rpc GetOrdersAggregateByRegion(GetOrdersAggregateByRegionRequest) returns((GetOrdersAggregateByRegionResponse);
+    rpc GetAllOrdersClient(GetAllOrdersClientRequest) returns(GetAllOrdersClientResponse);
+}
+
+//--CancelOrderById--
+message CancelOrderByIdRequest{
+    long orderId = 1;
+}
+
+message CancelOrderByIdResponse{
+    bool success = 1;
+    string reason = 2;
+}
+
+//--GetOrderStatusById--
+message GetOrderStatusByIdRequest{
+    long orderId = 1;
+}
+
+message GetOrderStatusByIdResponse{
+    enum status = 1;
+}
+
+//--GetAllClients--
+message GetAllClientsRequest{
+}
+
+message GetAllClientsResponse{
+    repeatable Customer customers = 1;
+}
+
+//--GetAllRegions--
+message GetAllRegionsRequest{
+}
+
+message GetAllRegionsResponse{
+    repeatable string regions = 1;
+}
+
+//--GetAllOrders--
+message GetAllOrdersRequest{
+    repeatable string regions = 1;
+    string typeorder = 2;
+    Pagination pagination = 3;
+    SortDirection sortdirection = 4;
+    OrderSortBy ordersortby = 5;
+}
+
+message GetAllOrdersResponse{
+    repeatable Order orders = 1;
+}
+
+//--GetOrdersAggregateByRegionRequest--
+message GetOrdersAggregateByRegionRequest{
+     string datefrom = 1;
+     repeatable region = 2;
+}
+
+message GetOrdersAggregateByRegionResponse{
+    repeatable string regions = 1;
+    int32 countOrder = 2;
+}
+
+//--GetAllOrdersClient--
+message GetAllOrdersClientRequest{
+    long customerId = 1;
+    string dateFrom = 2;
+    Pagination pagination = 3;
+}
+
+message GetAllOrdersClientResponse{
+    repeatable Order orders = 1;
+}
+
+//--Comon--
+message Pagination{
+    int32 offset = 1; //>=0;
+    int32 limit = 2; //..100
+}
+
+enum OrderSortBy{
+    string region = 0;
+}
+
+enum SortDirection{
+    ASC = 0;
+    DESC = 1;
+}
+
+message Order{
+    long orderId = 1;
+    int32 quantitygoods = 2;
+    decimal totalamount = 3;
+    long totalweight = 4;
+    string orderdate = 5;
+    string region = 6;
+    string status = 7;
+    string customername = 8;
+    string addressdelivery = 9;
+    string phonenumber = 10;
+}
+
+message Customer{
+    long Id = 1;
+    string name = 2;
+    string address = 3;
+    string phonenumber = 4;
+}

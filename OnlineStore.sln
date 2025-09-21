@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11012.119 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.CustomerService", "OnlineStore.CustomerService.csproj", "{020A6A20-AA95-41C0-8F1F-05D9620061AC}"
 EndProject
@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDClient", "..\SDClient\SDC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OnlineStore.OrderService", "OnlineStore.OrderService", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStire.OrderService", "OnlineStire.OrderService\OnlineStire.OrderService.csproj", "{671870F7-FF62-4DED-A86A-F128A8AF6128}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.OrderService.Api", "OnlineStire.OrderService\OnlineStore.OrderService.Api.csproj", "{671870F7-FF62-4DED-A86A-F128A8AF6128}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
